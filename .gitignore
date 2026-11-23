@@ -1,0 +1,52 @@
+target/
+build/
+bin/
+obj/
+build/
+Release/
+Debug/
+*.csproj
+.idea/
+.vs/
+.settings/
+*.iml
+*.class
+*.jar
+# 사내 jar 로컬 Maven 저장소(Dockerfile 빌드용)는 추적
+!repo/**/*.jar
+.classpath
+.project
+.springBeans
+.svn/
+nul
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dev-debug.log
+# Dependency directories
+node_modules/
+# Environment variables
+.env
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+# OS specific
+.DS_Store
+
+# Task files
+# tasks.json
+# tasks/
+
+.playwright-mcp
+
+# Playwright / ad-hoc screenshots dropped at repo root
+/*.png

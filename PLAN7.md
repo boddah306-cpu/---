@@ -1,0 +1,136 @@
+수정 사항
+- 시험 및 개발 현황 화면 (http://localhost:8303/dash/dev-status.do)
+  - 테스트 결함 발생율 현황 패널
+    - bar 차트 
+    - x axis : 1월 부터 현재 월 
+    - series : 정상, 장애, 결함률
+    - 각 시리즈는 월 마다 개별 막대로 표현
+- 통합 로그 관리 현황 화면 (http://localhost:8303/dash/log-status.do)
+  - 로그 수집 추이 패널 
+    - 최근 5분 수집 추이 (차트 타이틀 왼쪽 상단)
+    - 5초 간격으로 데이터 필요 
+    - x축 label interval은 1분 간격 
+  - 테이블 로그 저장 추이 패널(왼쪽 차트)
+    - 최근 10분 테이블 입력 (차트 타이틀 왼쪽 상단)
+    - reverse x axis 바 차트 
+    - 카테고리 : fw1, bb1, sys_logger_trends, dcom1, sys_logger_stats
+  - 테이블 로그 저장 추이 패널(오른쪽 차트)
+    - 최근 10분 테이블 입력 용량(차트 타이틀 왼쪽 상단)
+    - reverse x axis 바 차트
+    - 카테고리 : fw1, bb1, sys_logger_trends, dcom1, sys_logger_stats
+  - 통합로그 서버 프로세스 상태 패널
+    - pie 차트 (차트 제목: 스레드 상태(왼쪽 상단), 합계 : ??? (우측 상단))
+    - 카테고리 : BLOCKED, RUNNABLE, TIMED_WAITING, WAITING
+  - 통합로그 서버 CPU 사용률 패널
+    - 최근 10분 CPU 사용률(5초 단위) (chart Title 왼쪽 상단)
+    - 시계열 라인 그래프 
+    - series : Kernel(green), User(yellow)
+  - 통합로그 서버 디스크 사용률 패널
+    - 현재 디스크 사용량 (chart Title 왼쪽 상단) (logDiskChart1)
+      - reverse x axis column chart (stack)
+      - category : /,/boot/efi, /dev, /dev/shm, /home, /run, /run/user/1000, /sys/fs/cgroup
+      - series : used(red), free(green)
+    - 최근 일주일 디스크 사용 추이(chart Title 왼쪽 상단) (logDiskChart2)
+      - 시계열 그래프 1일 간격 
+      - series : /,/boot/efi, /dev, /dev/shm, /home, /run, /run/user/1000, /sys/fs/cgroup
+      - 단위 G 표현
+  - 통합로그 서버 자바 메모리 사용량 및 자바 GC 동작 상태
+    - 자바 힙 (chart title 왼쪽 상단, id=logJvmChart1)
+    - reverse x axis bar chart
+    - 카테고리 : 최대치, 할당량, 사용량
+    - y축 data 단위 표현 G
+  - 통합로그 서버 자바 메모리 사용량 및 자바 GC 동작 상태
+    - 캐시 블럭수 (chart title 왼쪽 상단, id=logJvmChart2)
+    - reverse x axis bar chart
+    - 카테고리 : 테이블, 볼룸필터0, 볼룸필터1, 역인덱스
+    - y축 data 단위 표현 k
+  - 통합로그 서버 자바 메모리 사용량 및 자바 GC 동작 상태
+    - 캐시 용량 (chart title 왼쪽 상단, id=logJvmChart3)
+    - reverse x axis bar chart
+    - 카테고리 : 테이블, 볼룸필터0, 볼룸필터1, 역인덱스
+    - y축 data 단위 표현 M
+  - 통합로그 서버 자바 메모리 사용량 및 자바 GC 동작 상태
+    - 최근 10분간 GC 소요기간 분포 (chart title 왼쪽 상단, id=logJvmChart4)
+    - 카테고리 : Young Gen GC
+    - 시간 당 분포도 표현에 적당한 highchart 활용
+  - 통합로그 서버 자바 메모리 사용량 및 자바 GC 동작 상태
+    - 최근 10분간 GC 수행 소요 시간(밀리초)(chart title 왼쪽 상단, id=logGcChart)
+    - 시계열 그래프 1분간격 area chart
+    - y축 data ms 표현
+- 통합 보안 관리 현황 화면 (http://localhost:8303/dash/total-security.do)
+  - 위험 발생 현황 패널
+    - 0시~23시 시계열 그래프 차트 
+    - 금일 : line , 전일 : bar 
+    - 1시간 간격으로 데이터 필요 
+  - 탐지 패턴 Top 5 패널 -> 탐지필터 Top5 
+    - pie chart 로 변환
+    - 카테고리 : 정보탈취명령어, certutil.exe 실행, command(reg), 레지스트리 실행 키/시작폴더[T1547.001]
+- 교육 훈련 현황 화면 (http://localhost:8303/dash/edu-status.do)
+  - 교육 일정 패널 
+    - 모든 데이터가 표현 될수 있도록 (컬럼 별 - 표현 제거)
+    - 가데이터로 패널 영역에 맞게 데이터 생성
+- 자동 패치 현황 화면 (http://localhost:8303/dash/auto-patch.do)
+  - 패치 진행 현황 패널
+    - 도넛 차트 
+    - 카테고리 : 설치완료, 대기중, 실패
+    - 좌측 PIE 차트 우측은 카테고리 별 사용률 표현 
+    - ex) 우측 공간 (텍스트 표현)
+      - 80.0% 설치완료 
+      - 13.3% 대기중
+      - 5.7% 실패
+  - S/W 설치 현황 패널
+    - 도넛 차트
+    - 카테고리 : 설치완료, 대기중, 실패
+    - 좌측 PIE 차트 우측은 카테고리 별 사용률 표현
+    - ex) 우측 공간 (텍스트 표현)
+      - 88.0% 설치완료(green)
+      - 7.3% 대기중(주황색)
+      - 4.7% 실패(red)
+  - Agent 운영 현황 패널
+    - 파이 차트
+    - 카테고리 : 미사용, 미접속, 삭제, 접속
+    - 사용률 표현
+  - OS 패치율 패널
+    - bar chart
+    - 카테고리 : Window7, Window8, Window10, Window11, WIndow2008 Server, Window2012 Server, Window2016 Server
+    - 사용률 표현
+  - OS 등록 현황 패널
+    - bar chart
+    - 카테고리 : Window7, Window8, Window10, Window11, WIndow2008 Server, Window2012 Server, Window2016 Server
+    - 사용률 표현
+  - 패치 유형별 패치율 패널
+    - reverse x axis bar chart
+    - 카테고리 : MS운영체제, 바이러스 백신, 일반, 오피스, 서버군, 개발, 오류보고, 기타
+    - 사용률 표현
+  - 패치 현황 패널
+    - 테이블 
+    - 컬럼 : 심각도, 내용, 패치여부
+    
+- 자산 관리 현황 화면 (http://localhost:8303/dash/itsm-status.do)
+  - 요청처리현황(오늘) 패널 수정
+    - x축 일반요청, 개발요청, HW 장애, SW 장애
+    - y축 등록 , 종료 
+    - column 차트 (스택)
+  - 요청처리율 패널 수정
+    - pie chart 로 변환 
+    - 미처리/처리 비율 표현
+  - 요청유형별 비율 패널
+    - 분류 : 소프트웨어장애, 네트워크장애, 서버장애, 답변요청, 서비스요청
+    - pie 차트 
+  - 서비스요청통계(월) 패널
+    - column 차트(스택)
+    - 카테고리 : 일반요청, 개발요청, HW장애, SW장애
+    - y축 : 등록 수, 종료 수 
+  - 장애발생통계(네트워크) 패널
+    - 카테고리 : 자사VPN, 전산실Top#2, 내부방화벽#2, 백본#1, 내부L2, 본청 백본, 기타
+  - 지연처리현황 패널
+    - 테이블 컬럼 : 내용, 요청사항, 상태, 담당자 
+  - 자산통계 패널
+    - reverse bar 차트
+    - 카테고리 : 서버, 네트워크, 보안, 기타
+    - y축 건수
+
+-공통
+  - 모든 패널은 현재 영역 크기와 디자인을 유지하도록 구현
+  - 구현 후 playwright 확인
+  - 접속 정보 admin / admin

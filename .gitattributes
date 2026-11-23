@@ -1,0 +1,4 @@
+# Maven 로컬 저장소(repo/)는 체크섬(.sha1)과 바이트가 같아야 하므로 줄바꿈 변환 금지
+repo/** -text
+# 컨테이너 빌드 파일은 LF 고정
+Dockerfile text eol=lf
